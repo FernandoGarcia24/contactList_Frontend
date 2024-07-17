@@ -1,0 +1,26 @@
+th {
+    background-color: #f8f9fa;
+    padding: 20px; 
+}
+
+.custom-margin {
+    margin-right: 70px;
+}
+
+td {
+    padding: 20px;
+}
+
+.table th,
+.table td {
+    border-top: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6; 
+}

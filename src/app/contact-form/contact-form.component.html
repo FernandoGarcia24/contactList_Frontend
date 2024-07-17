@@ -1,0 +1,107 @@
+<div class="container mt-3 row row-cols-3 justify-content-center">
+  <div class="card shadow-lg">
+    <div class="card-body">
+
+      <h2 class="mb-5 text-center card-title">
+        @if(contact) { Editar contacto } @else { Nuevo contacto }
+      </h2>
+
+      @if(form) {
+      <div>
+        @if(errors.length) {
+        <div class="alert alert-danger">
+          <p>Ha susedido los siguientes errores:</p>
+
+          <ul>
+            @for (error of errors; track error) {
+            <li>{{ error }}</li>
+            }
+          </ul>
+        </div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="save()">
+          <div class="mb-3">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Nombre"
+              class="form-control"
+              formControlName="name"
+            />
+
+            @if(form.get('name')?.hasError('required') &&
+            form.get('name')?.touched) {
+            <p class="invalid-feedback d-block">Nombre es obligatorio</p>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              class="form-control"
+              formControlName="email"
+            />
+
+            @if(form.get('email')?.hasError('required') &&
+            form.get('email')?.touched) {
+            <p class="invalid-feedback d-block">Email es obligatorio</p>
+            } @if(form.get('email')?.hasError('email')) {
+            <p class="invalid-feedback d-block">Email es invalido</p>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="fechaNacimiento">Fecha Nacimiento</label>
+            <input
+              type="date"
+              id="fechaNacimiento"
+              placeholder="fechaNacimiento"
+              class="form-control"
+              formControlName="fechaNacimiento"
+            />
+
+            @if(form.get('fechaNacimiento')?.hasError('required') &&
+            form.get('fechaNacimiento')?.touched) {
+            <p class="invalid-feedback d-block">
+              Fecha de nacimiento es obligatoria
+            </p>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="celular">Celular</label>
+            <input
+              type="number"
+              id="celular"
+              placeholder="Celular"
+              class="form-control"
+              formControlName="celular"
+            />
+
+            @if(form.get('celular')?.hasError('required') &&
+            form.get('celular')?.touched) {
+            <p class="invalid-feedback d-block">
+              Numero de celular es obligatorio
+            </p>
+            }
+          </div>
+
+          <div class="text-end mt-5">
+            <button type="button" class="btn btn-ligth" routerLink="/">
+              Cancelar
+            </button>
+            <button class="btn btn-primary ms.2">
+              @if (contact) { Editar contacto } @else { Crear contacto }
+            </button>
+          </div>
+        </form>
+      </div>
+      }
+    </div>
+  </div>
+</div>
